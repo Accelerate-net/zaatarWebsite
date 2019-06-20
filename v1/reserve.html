@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Kopper Kadai</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<link rel="shortcut icon" href="images/favicon.ico">
+		<link rel="bookmark" href="images/favicon.ico">
+
+	</head>
+	<body ng-app="kopperKadaiApp" ng-controller="reservationController" ng-cloak>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Wrapper -->
+					<div id="wrapper">
+
+						
+
+						<!-- Panel -->
+							<section class="panel color4-alt" id="tableReservation" style="overflow: hidden">
+								<div class="inner columns divided">
+									<div class="span-4-5" ng-if="isSubmitted">
+										<h3 class="major">Reservation Status</h3>
+										<p ng-if="isSuccess">We have received your table reservation request.<br>A Confirmation SMS will be soon sent your Mobile Number.<br>See you soon!</p>
+										<p ng-if="!isSuccess" style="color:#e74c3c">Oops! Something went wrong. Please call us to make a reservation.</p>
+									</div>
+									<div class="span-4-5" ng-if="!isSubmitted">
+										<h3 class="major">Table Reservation</h3>
+										<form>
+											<div class="field third">
+												<label for="name">Name</label>
+												<input type="text" name="name" id="demo-name" ng-model="userData.name"/>
+											</div>
+											<div class="field third">
+												<label for="mobile">Mobile</label>
+												<input type="text" name="mobile" id="demo-mobile" ng-model="userData.mobile"placeholder="10 digit mobile number" maxlength="10"/>
+											</div>
+											<div class="field third">
+												<label for="email">Email</label>
+												<input type="email" name="email" id="demo-email" ng-model="userData.email"/>
+											</div>
+											<div class="field third">
+												<label for="book-date">Date</label>
+												<div class="select-wrapper">
+													<!-- <select name="book-date" id="demo-category">
+														<option value="">-</option>
+														<option value="1">Today</option>
+														<option value="1">Tomorrow</option>
+														<option value="1">Administration</option>
+														<option value="1">Human Resources</option>
+													</select> -->
+													<select ng-model="dateSelected" ng-options="date.name for date in dateList" ng-change="fetchTimeslots(this)">
+													</select>
+												</div>
+											</div>
+											<div class="field third">
+												<label for="book-time">Time</label>
+												<div class="select-wrapper">
+													<!-- <select name="book-time" id="demo-category">
+														<option value="">-</option>
+														<option value="1">09:00 PM</option>
+														<option value="1">09:30 PM</option>
+														<option value="1">Administration</option>
+														<option value="1">Human Resources</option>
+													</select> -->
+													<select ng-model="timeSelected" ng-options="time.name for time in timeList" ng-change="updateTimeSlot(this)">
+									        </select>
+												</div>
+											</div>
+											<div class="field third">
+												<label for="book-count">Number of Guests</label>
+												<div class="select-wrapper">
+													<!-- <select name="book-count" id="demo-category">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+													</select> -->
+													<select ng-model="countSelected" ng-options="count.value for count in countList" ng-change="updateCount(this)">
+									        </select>
+												</div>
+											</div>
+											<div class="field third">
+												<input type="checkbox" ng-model="bookData.isBirthday" id="demo-priority-low" name="birthday" value="BIRTHDAY"class="color2"/>
+												<label for="demo-priority-low">Birthday Celebration</label>
+											</div>
+											<div class="field third">
+												<input type="checkbox" ng-model="bookData.isAnniversary" id="demo-priority-high" name="anniversary" value="ANNIVERSARY" class="color2" />
+												<label for="demo-priority-high">Anniversary Celebration</label>
+											</div>
+
+											<div class="field">
+												<label for="demo-message">Special Request</label>
+												<textarea name="message" ng-model="bookData.comments" id="demo-message" placeholder="Enter your message" rows="2"></textarea>
+											</div>
+											<ul class="actions">
+												<li><input type="submit" ng-click="bookTable()" value="Confirm Booking" class="special color1" /></li>
+												<li style="color: #f1c40f">{{errorMsg}}</li>
+											</ul>
+										</form>
+									</div>
+									<div class="span-1-5">
+										<h2 class="major">Contact</h2><br>
+										<ul class="contact-icons color1">
+											<li class="icon fa-envelope"><a href="#">bangalore@kopperkadai.com</a></li>
+											<li class="icon fa-facebook"><a href="#">KopperKadaiBangalore</a></li>
+											<li class="icon fa-phone"><a href="#">80656 57515, 80656 58515</a></li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+
+						<!-- Copyright -->
+							<div class="copyright">Developed by <a href="http://www.accelerate.net.in">Accelerate</a> | <a href="terms.html">Terms and Conditions</a> | <a href="privacy.html">Privacy Policy</a></div>
+
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/angular.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/controller.js"></script>
+
+	</body>
+</html>
